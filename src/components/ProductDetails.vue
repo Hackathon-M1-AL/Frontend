@@ -3,17 +3,13 @@
     <div class="modal" v-if="visible">
       <div class="modal-content">
         <div class="modal-left">
-          <img
-            :src="product.imageUrl"
-            :alt="product.name"
-            class="product-image"
-          />
+          <img :src="product.image" :alt="product.nom" class="product-image" />
         </div>
         <div class="modal-right">
           <span class="close" @click="close">&times;</span>
-          <h2 class="product-title">{{ product.name }}</h2>
+          <h2 class="product-title">{{ product.nom }}</h2>
           <p class="product-description">{{ product.description }}</p>
-          <p class="product-price">{{ formatPrice(product.price) }}</p>
+          <p class="product-price">{{ formatPrice(product.prix) }}</p>
           <div class="quantity-section">
             <label for="quantity" class="quantity-label">Quantité</label>
             <div class="quantity-stepper">
@@ -101,6 +97,7 @@ export default {
   overflow: hidden;
   background: white;
   width: 80%;
+  max-height: 80%;
 }
 
 .modal-left,

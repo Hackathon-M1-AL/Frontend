@@ -3,11 +3,11 @@
     <button class="add-to-cart-btn" @click.stop="addToCart(product)">
       <img :src="addToCartIconUrl" alt="Add to cart" />
     </button>
-    <img :src="product.imageUrl" :alt="product.name" class="product-image" />
+    <img :src="product.image" :alt="product.name" class="product-image" />
     <div class="product-info">
-      <div class="product-name">{{ product.name }}</div>
+      <div class="product-name">{{ product.nom }}</div>
       <div class="product-description">{{ product.description }}</div>
-      <div class="product-price">{{ formatPrice(product.price) }}</div>
+      <div class="product-price">{{ formatPrice(product.prix) }}</div>
       <div class="product-category">{{ product.catalogue }}</div>
     </div>
   </div>
