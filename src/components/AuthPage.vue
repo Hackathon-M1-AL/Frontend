@@ -14,15 +14,15 @@
 
       <!-- Bouton pour soumettre le formulaire -->
       <button type="submit">
-        {{ isLoginMode ? "Connexion" : "Inscrire" }}
+        {{ isLoginMode ? "Connexion" : "S'inscrire" }}
       </button>
 
       <!-- Lien pour basculer entre Inscription et Connexion -->
-      <p @click="toggleMode">
+      <p class="switch-mode" @click="toggleMode">
         {{
           isLoginMode
             ? "Pas de compte ? Inscrivez-vous"
-            : "Avez-vous déjà un compte ? Connectez-vous"
+            : "Vous avez déjà un compte ? Connectez-vous"
         }}
       </p>
     </form>
@@ -88,8 +88,12 @@ button:hover {
   opacity: 0.8;
 }
 
-p {
+.switch-mode {
   color: #777;
   cursor: pointer;
+}
+
+.switch-mode:hover {
+  text-decoration: underline;
 }
 </style>
