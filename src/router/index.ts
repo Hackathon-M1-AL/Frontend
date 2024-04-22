@@ -3,6 +3,7 @@ import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import AuthPage from "../components/AuthPage.vue";
 import ProductCard from "../components/ProductCard.vue";
 import CatalogueView from "../components/CatalogueView.vue";
+import PaimentPopUp from "../composition/paiements/PaimentPopUp.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "/catalogue",
         name: "Catalogue",
         component: CatalogueView,
+    },
+    {
+        path: "/paiement",
+        name: "paiement",
+        component: PaimentPopUp,
     },
     {
         path: '/:pathMatch(.*)*',  // Catch-all route
