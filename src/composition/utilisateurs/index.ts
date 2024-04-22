@@ -1,7 +1,7 @@
 export interface Utilisateur {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-  password: string;
+  id: number | null;
+  username: string | null;
+  email: string | null;
+  role: string | null;
+  password: string | null;
 }
