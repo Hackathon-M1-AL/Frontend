@@ -1,8 +1,14 @@
 <template>
+  <select v-model="selectedCategory">
+    <option value="">Toutes les catégories</option>
+    <option v-for="category in categories" :key="category">
+      {{ category }}
+    </option>
+  </select>
   <div class="catalogue-container">
     <product-card
       class="product-card"
-      v-for="product in products"
+      v-for="product in filteredProducts"
       :key="product.id"
       :product="product"
       @view-details="showDetails"
@@ -28,6 +34,7 @@ export default {
     return {
       selectedProduct: null,
       isDetailsVisible: false,
+      selectedCategory: "",
       products: [
         {
           id: 1,
@@ -123,6 +130,22 @@ export default {
         // Ajoute plus de produits selon tes besoins
       ],
     };
+  },
+  computed: {
+    categories() {
+      // Récupère toutes les catégories distinctes de la liste de produits
+      return [...new Set(this.products.map((product) => product.catalogue))];
+    },
+    filteredProducts() {
+      // Filtre les produits en fonction de la catégorie sélectionnée
+      if (!this.selectedCategory) {
+        return this.products;
+      } else {
+        return this.products.filter(
+          (product) => product.catalogue === this.selectedCategory
+        );
+      }
+    },
   },
   methods: {
     showDetails(product) {
