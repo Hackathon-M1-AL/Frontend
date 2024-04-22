@@ -1,8 +1,16 @@
-<script setup lang="ts"></script>
-
 <template>
-  <router-view> </router-view>
+  <div class="global-app">
+    <Navbar />
+
+    <div class="view-app">
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+import Navbar from "./components/Navbar.vue";
+</script>
 
 <style scoped>
 .logo {
@@ -17,4 +25,17 @@
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+
+.global-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.view-app {
+  flex-grow: 1;
+  margin: 0 2rem;
+}
+
+
 </style>
