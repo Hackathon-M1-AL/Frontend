@@ -80,4 +80,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: hackathon-m1-al/Frontend/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          tags: ${{ env.IMAGE_NAME }}:${{ github.ref_name }}
