@@ -83,4 +83,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: hackathon-m1-al/frontend:${{ github.ref_name }}
+          tags: ghcr.io/hackathon-m1-al/frontend:${{ github.ref_name }}
