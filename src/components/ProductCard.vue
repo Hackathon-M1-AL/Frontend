@@ -2,10 +2,10 @@
   <div class="product-card">
     <img :src="product.imageUrl" :alt="product.name" class="product-image" />
     <div class="product-info">
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <div class="product-category">{{ product.catalogue }}</div>
+      <div class="product-name">{{ product.name }}</div>
+      <div class="product-description">{{ product.description }}</div>
       <div class="product-price">{{ formatPrice(product.price) }}</div>
+      <div class="product-category">{{ product.catalogue }}</div>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
 .product-card {
   width: 300px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
@@ -52,18 +52,41 @@ export default {
 
 .product-info {
   padding: 15px;
-  text-align: center;
+  text-align: left;
+}
+
+.product-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-description {
+  color: #666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .product-category {
   font-size: 0.9em;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.product-price {
-  color: #4caf50;
-  font-weight: bold;
-  margin-top: 10px;
+  background-color: #e0e0e0; /* Couleur de fond grise */
+  color: #333;
+  padding: 3px 10px;
+  border-radius: 16px; /* Coins arrondis pour l'effet de pastille */
+  display: inline-block;
+  margin-bottom: 4px;
 }
 </style>
