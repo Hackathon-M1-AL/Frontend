@@ -3,11 +3,7 @@
     <div class="modal" v-if="visible">
       <div class="modal-content">
         <div class="modal-left">
-          <img
-            :src="product.image"
-            :alt="product.nom"
-            class="product-image"
-          />
+          <img :src="product.image" :alt="product.nom" class="product-image" />
         </div>
         <div class="modal-right">
           <span class="close" @click="close">&times;</span>
@@ -101,6 +97,7 @@ export default {
   overflow: hidden;
   background: white;
   width: 80%;
+  max-height: 80%;
 }
 
 .modal-left,
