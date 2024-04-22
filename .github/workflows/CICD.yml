@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: build image
-        run: docker image build --tag="${IMAGE_NAME}" ./web-project/
+        run: docker image build --tag="${IMAGE_NAME}" ./
       - name: run container
         run: docker container run -d -p "${CONTAINER_PORT}":4173 --name "${CONTAINER_NAME}" "${IMAGE_NAME}"
       - name: Wait container startup
