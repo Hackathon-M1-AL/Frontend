@@ -1,8 +1,9 @@
 // src/router/index.ts
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import AuthPage from "../components/AuthPage.vue";
 import ProductCard from "../components/ProductCard.vue";
 import CatalogueView from "../components/CatalogueView.vue";
+import PaimentPopUp from "../composition/paiements/PaimentPopUp.vue";
 import CommandView from "../components/CommandView.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -25,12 +26,17 @@ const routes: Array<RouteRecordRaw> = [
     path: "/commande",
     name: "Commande",
     component: CommandView,
-  }
+  },
+        {
+        path: '/:pathMatch(.*)*',  // Catch-all route
+        name: 'Auth',
+        component: AuthPage
+    },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;
