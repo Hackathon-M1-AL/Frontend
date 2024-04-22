@@ -1,5 +1,5 @@
 import {Produit} from "../produits";
-import { Commit, GetterTree, MutationTree, ActionTree } from 'vuex';
+import { Commit } from 'vuex';
 
 interface State {
   panier: Produit[];
