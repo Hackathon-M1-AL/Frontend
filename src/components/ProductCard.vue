@@ -1,5 +1,8 @@
 <template>
   <div class="product-card">
+    <button class="add-to-cart-btn" @click="addToCart(product)">
+      <img :src="addToCartIconUrl" alt="Add to cart" />
+    </button>
     <img :src="product.imageUrl" :alt="product.name" class="product-image" />
     <div class="product-info">
       <div class="product-name">{{ product.name }}</div>
@@ -12,6 +15,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      // Utiliser require pour inclure l'image dans le bundle de Webpack
+      //addToCartIconUrl: require("@/assets/addToBasket.svg"),
+    };
+  },
   props: {
     product: {
       type: Object,
@@ -26,12 +35,17 @@ export default {
         currency: "EUR",
       }).format(price);
     },
+    addToCart(product) {
+      // Logique pour ajouter le produit au panier
+      console.log("Ajouté au panier:", product);
+    },
   },
 };
 </script>
 
 <style scoped>
 .product-card {
+  position: relative;
   width: 300px;
   border: 1px solid #ccc;
   border-radius: 16px;
@@ -88,5 +102,30 @@ export default {
   border-radius: 16px; /* Coins arrondis pour l'effet de pastille */
   display: inline-block;
   margin-bottom: 4px;
+}
+
+.add-to-cart-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #367c39; /* Vert foncé */
+}
+
+.add-to-cart-btn img {
+  width: 20px; /* Taille de l'icône à ajuster selon tes besoins */
+  height: 20px;
 }
 </style>
