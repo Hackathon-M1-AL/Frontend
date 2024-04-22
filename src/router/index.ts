@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import AuthPage from "../components/AuthPage.vue";
 import ProductCard from "../components/ProductCard.vue";
 import CatalogueView from "../components/CatalogueView.vue";
+import CatalogueCreator from "../components/CatalogueCreator.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/catalogue",
     name: "Catalogue",
     component: CatalogueView,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: CatalogueCreator,
   },
 ];
 
