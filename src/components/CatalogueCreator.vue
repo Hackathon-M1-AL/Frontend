@@ -1,9 +1,9 @@
 <template>
   <div>
     <input type="text" v-model="catalogueName" placeholder="Nom du catalogue" />
-    <button @click="createCatalogue">Créer Catalogue</button>
 
     <product-creator
+      class="product-creator"
       v-for="(product, index) in products"
       :key="index"
       :product="product"
@@ -12,8 +12,8 @@
     >
     </product-creator>
 
-    <button @click="addProduct">Ajouter Produit</button>
-    <button @click="saveCatalogue">Sauvegarder Catalogue</button>
+    <button @click="addProduct">Ajouter un Produit</button>
+    <button @click="saveCatalogue">Sauvegarder le Catalogue</button>
   </div>
 </template>
 
@@ -39,8 +39,8 @@ export default {
       this.products.push({
         name: "",
         description: "",
-        price: 0,
-        quantityAvailable: 0,
+        price: "",
+        quantityAvailable: "",
       });
     },
     updateProduct(index, updatedProduct) {
@@ -100,5 +100,8 @@ button {
 }
 button:hover {
   background-color: #4cae4c;
+}
+.product-creator {
+  margin-bottom: 15px;
 }
 </style>

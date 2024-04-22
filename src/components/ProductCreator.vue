@@ -11,8 +11,12 @@
       v-model.number="product.quantityAvailable"
       placeholder="Quantité disponible"
     />
-    <button @click="updateProduct">Mettre à jour Produit</button>
-    <button @click="removeProduct">Supprimer Produit</button>
+    <button class="update-product" @click="updateProduct">
+      Mettre à jour le Produit
+    </button>
+    <button class="remove-product" @click="removeProduct">
+      Supprimer le Produit
+    </button>
   </div>
 </template>
 
