@@ -1,6 +1,7 @@
 <template>
   <div class="catalogue-container">
     <product-card
+      class="product-card"
       v-for="product in products"
       :key="product.id"
       :product="product"
@@ -138,5 +139,9 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+}
+
+.product-card {
+  cursor: pointer;
 }
 </style>

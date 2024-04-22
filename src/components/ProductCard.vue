@@ -1,6 +1,6 @@
 <template>
   <div class="product-card" @click="handleClick">
-    <button class="add-to-cart-btn" @click="addToCart(product)">
+    <button class="add-to-cart-btn" @click.stop="addToCart(product)">
       <img :src="addToCartIconUrl" alt="Add to cart" />
     </button>
     <img :src="product.imageUrl" :alt="product.name" class="product-image" />
