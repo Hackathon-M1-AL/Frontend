@@ -4,19 +4,29 @@
       v-for="product in products"
       :key="product.id"
       :product="product"
+      @view-details="showDetails"
+    />
+    <product-details
+      :product="selectedProduct"
+      :visible="isDetailsVisible"
+      @close="isDetailsVisible = false"
     />
   </div>
 </template>
 
 <script>
 import ProductCard from "./ProductCard.vue";
+import ProductDetails from "./ProductDetails.vue";
 
 export default {
   components: {
     ProductCard,
+    ProductDetails,
   },
   data() {
     return {
+      selectedProduct: null,
+      isDetailsVisible: false,
       products: [
         {
           id: 1,
@@ -39,6 +49,12 @@ export default {
         // Ajoute plus de produits selon tes besoins
       ],
     };
+  },
+  methods: {
+    showDetails(product) {
+      this.selectedProduct = product;
+      this.isDetailsVisible = true;
+    },
   },
 };
 </script>

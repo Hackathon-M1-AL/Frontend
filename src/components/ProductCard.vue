@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card">
+  <div class="product-card" @click="handleClick">
     <button class="add-to-cart-btn" @click="addToCart(product)">
       <img :src="addToCartIconUrl" alt="Add to cart" />
     </button>
@@ -38,6 +38,9 @@ export default {
     addToCart(product) {
       // Logique pour ajouter le produit au panier
       console.log("Ajouté au panier:", product);
+    },
+    handleClick() {
+      this.$emit("view-details", this.product);
     },
   },
 };
