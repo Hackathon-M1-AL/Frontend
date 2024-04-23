@@ -13,7 +13,7 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine avant de co
 
 1. Clonez ce dépôt sur votre machine locale :
     ```bash
-    git clone <url-du-dépôt> mon-application-vue3
+    git clone https://github.com/Hackathon-M1-AL/Frontend mon-application-vue3
     ```
 
 2. Accédez au répertoire de l'application :
