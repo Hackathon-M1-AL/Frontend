@@ -1,4 +1,4 @@
-import {Utilisateur} from "./index";
+import { Utilisateur} from "./index";
 import {  GetterTree, MutationTree, ActionTree } from 'vuex';
 
 const url = "http://localhost:8000/auth/auth/"
@@ -45,7 +45,8 @@ const actions: ActionTree<State, any> = {
       }
 
       const data = await response.json();
-      commit('setToken', data.token);
+      commit('setToken', data.accessToken);
+      console.log(data.accessToken)
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -58,7 +59,7 @@ const actions: ActionTree<State, any> = {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username: authData.email, password: authData.password })
+        body: JSON.stringify({ username: authData.username, password: authData.password, email: authData.email, role: authData.role })
       });
 
       if (!response.ok) {

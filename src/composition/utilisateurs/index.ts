@@ -11,3 +11,9 @@ export interface Utilisateur {
     password: string | null;
 }
 
+export interface CreationUtilisateur {
+    username: string | null;
+    email: string | null;
+    role: Role[];
+    password: string | null;
+}

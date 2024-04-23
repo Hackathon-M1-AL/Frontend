@@ -2,7 +2,7 @@
   <div class="auth-container">
     <form @submit.prevent="handleSubmit">
       <h2>{{ isLoginMode ? "Connexion" : "Inscription" }}</h2>
-      <input type="email" v-model="email" placeholder="Email" required/>
+      <input type="text" v-model="email" placeholder="Email" required/>
       <input type="password" v-model="password" placeholder="Mot de passe" required/>
       <button type="submit">{{ isLoginMode ? "Connexion" : "S'inscrire" }}</button>
       <p class="switch-mode" @click="toggleMode">
@@ -15,6 +15,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
+import router from "../router";
 
 const store = useStore();
 const email = ref('');
@@ -37,10 +38,12 @@ async function handleSubmit() {
     }
   } catch (error) {
     console.error('Error:', error);
+  } finally {
+    if (store.getters['utilisateurs/isAuthenticated']) {
+      router.push('/catalogue'); // Remplacez '/dashboard' par le chemin où vous souhaitez rediriger l'utilisateur
+    }
   }
 }
-
-
 </script>
 
 <style scoped>
@@ -51,7 +54,7 @@ async function handleSubmit() {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
   width: 100%;
   padding: 10px;
