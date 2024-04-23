@@ -73,9 +73,7 @@ function getProduitPanier(produit: Produit): ProduitPanier | undefined {
 
 export default {
   namespaced: true,
-  state: {
-    panier: []
-  },
+  state,
   mutations,
   actions,
   getters
