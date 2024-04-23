@@ -4,23 +4,28 @@
       <h2>{{ isLoginMode ? "Connexion" : "Inscription" }}</h2>
       <input type="text" v-model="email" placeholder="Email" required/>
       <input type="password" v-model="password" placeholder="Mot de passe" required/>
+      <input type="password" v-model="password" placeholder="Mot de passe" required/>
+      <input type="password" v-model="password" placeholder="Mot de passe" required/>
       <button type="submit">{{ isLoginMode ? "Connexion" : "S'inscrire" }}</button>
       <p class="switch-mode" @click="toggleMode">
         {{ isLoginMode ? "Pas de compte ? Inscrivez-vous" : "Vous avez déjà un compte ? Connectez-vous" }}
       </p>
 
+<!--      <div class="error-message" v-if="!!error"> {{ error }} </div>-->
     </form>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import router from "../router";
 
 const store = useStore();
 const email = ref('');
 const password = ref('');
+const username = ref('');
+const role = ref(["ROLE_ADMIN"]);
 const isLoginMode = ref(true);
 
 function toggleMode() {
@@ -85,4 +90,8 @@ button:hover {
   text-decoration: underline;
 }
 
+.error-message {
+  color: #ea2d2d;
+  font-size: small;
+}
 </style>
