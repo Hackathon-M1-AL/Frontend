@@ -1,6 +1,6 @@
 // store.ts
 import { ActionTree, MutationTree, StoreOptions } from "vuex";
-import { Catalogue, Produit } from "../interfaces"; // Assurez-vous que le chemin est correct
+import { Catalogue } from "./index"; // Assurez-vous que le chemin est correct
 import axios from "axios";
 
 interface State {
