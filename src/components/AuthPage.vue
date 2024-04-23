@@ -2,10 +2,9 @@
   <div class="auth-container">
     <form @submit.prevent="handleSubmit">
       <h2>{{ isLoginMode ? "Connexion" : "Inscription" }}</h2>
-      <input type="text" v-model="email" placeholder="Email" required/>
+      <input type="text" v-model="email" placeholder="username" required/>
       <input type="password" v-model="password" placeholder="Mot de passe" required/>
-      <input type="password" v-model="password" placeholder="Mot de passe" required/>
-      <input type="password" v-model="password" placeholder="Mot de passe" required/>
+      <input v-if="!isLoginMode" type="text" v-model="username" placeholder="email" required/>
       <button type="submit">{{ isLoginMode ? "Connexion" : "S'inscrire" }}</button>
       <p class="switch-mode" @click="toggleMode">
         {{ isLoginMode ? "Pas de compte ? Inscrivez-vous" : "Vous avez déjà un compte ? Connectez-vous" }}
@@ -17,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 import router from "../router";
 
@@ -35,10 +34,11 @@ function toggleMode() {
 async function handleSubmit() {
   try {
     const authData = {email: email.value, password: password.value};
+    const registerData = {username: email.value, password: password.value, email: username.value, role: role.value};
     if (isLoginMode.value) {
       await store.dispatch('utilisateurs/login', authData);
     } else {
-      await store.dispatch('utilisateurs/register', authData);
+      await store.dispatch('utilisateurs/register', registerData);
     }
   } catch (error) {
     console.error('Error:', error);
