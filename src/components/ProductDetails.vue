@@ -125,6 +125,7 @@ export default {
 
 .close {
   align-self: flex-end;
+  cursor: pointer;
 }
 
 .product-title {

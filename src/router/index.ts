@@ -4,6 +4,8 @@ import AuthPage from "../components/AuthPage.vue";
 import ProductCard from "../components/ProductCard.vue";
 import CatalogueView from "../components/CatalogueView.vue";
 import CatalogueCreator from "../components/CatalogueCreator.vue";
+import PaimentPopUp from "../composition/paiements/PaimentPopUp.vue";
+import CommandView from "../components/CommandView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +22,16 @@ const routes: Array<RouteRecordRaw> = [
     path: "/catalogue",
     name: "Catalogue",
     component: CatalogueView,
+  },
+  {
+    path: "/commande",
+    name: "Commande",
+    component: CommandView,
+  },
+  {
+    path: "/:pathMatch(.*)*", // Catch-all route
+    name: "Auth",
+    component: AuthPage,
   },
   {
     path: "/create",

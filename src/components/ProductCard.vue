@@ -1,8 +1,9 @@
 <template>
   <div class="product-card" @click="handleClick">
     <button class="add-to-cart-btn" @click.stop="addToCart(product)">
-      <img :src="addToCartIconUrl" alt="Add to cart" />
+      <icon-shopping-cart></icon-shopping-cart>
     </button>
+
     <img :src="product.image" :alt="product.name" class="product-image" />
     <div class="product-info">
       <div class="product-name">{{ product.nom }}</div>
@@ -14,7 +15,10 @@
 </template>
 
 <script>
+import IconShoppingCart from "./IconShoppingCart.vue";
+
 export default {
+  components: {IconShoppingCart},
   data() {
     return {
       // Utiliser require pour inclure l'image dans le bundle de Webpack
@@ -122,7 +126,10 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
+.add-to-cart-btn :deep(#icon-shopping-cart) {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .add-to-cart-btn:hover {
   background-color: #367c39; /* Vert foncé */
 }
