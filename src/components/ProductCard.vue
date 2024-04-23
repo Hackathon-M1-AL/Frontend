@@ -15,6 +15,12 @@
       <div class="product-price">{{ formatPrice(product.prix) }}</div>
       <div class="product-category">{{ product.catalogue }}</div>
     </div>
+    <transition name="fade">
+      <div class="notification" v-if="showNotification">
+        L'article a été ajouté au panier.
+        <div class="progress-bar"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -26,6 +32,7 @@ export default {
   data() {
     return {
       isHovering: false,
+      showNotification: false,
     };
   },
   props: {
@@ -42,6 +49,10 @@ export default {
       }).format(price);
     },
     addToCart(product) {
+      this.showNotification = true;
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 3000);
       console.log("Ajouté au panier:", product);
     },
     handleClick() {
@@ -138,5 +149,43 @@ export default {
 .add-to-cart-btn img {
   width: 20px;
   height: 20px;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: white;
+  width: 100%;
+  border-radius: 4px;
+  animation: shrink 3s linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

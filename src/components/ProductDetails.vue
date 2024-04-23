@@ -29,13 +29,19 @@
           <div class="flex-container">
             <div class="button-section">
               <button class="buy-now-btn">Acheter maintenant</button>
-              <button class="add-to-cart-btn">
+              <button class="add-to-cart-btn" @click="addToCart">
                 <i class="fas fa-shopping-cart"></i> Ajouter au panier
               </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </transition>
+  <transition name="fade">
+    <div class="notification" v-if="showNotification">
+      L'article a été ajouté au panier.
+      <div class="progress-bar"></div>
     </div>
   </transition>
 </template>
@@ -55,6 +61,7 @@ export default {
   data() {
     return {
       quantity: 1,
+      showNotification: false,
     };
   },
   methods: {
@@ -66,6 +73,12 @@ export default {
         style: "currency",
         currency: "EUR",
       }).format(price);
+    },
+    addToCart() {
+      this.showNotification = true;
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 3000);
     },
     increment() {
       this.quantity += 1;
@@ -231,6 +244,44 @@ export default {
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: white;
+  width: 100%;
+  border-radius: 4px;
+  animation: shrink 3s linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter,
