@@ -1,68 +1,90 @@
-import {Utilisateur} from "./index";
-import { Commit, GetterTree, MutationTree, ActionTree } from 'vuex';
+import { Utilisateur} from "./index";
+import {  GetterTree, MutationTree, ActionTree } from 'vuex';
+
+const url = "http://localhost:8000/auth/auth/"
 
 interface State {
   utilisateur: Utilisateur,
-  connected: Boolean
+  token: string | null,
+  isAuthenticated: boolean
 };
 
 const state = {
   utilisateur: null,
-  connected: false
+  token: null,
+  isAuthenticated: false
 }
 
 const mutations: MutationTree<State> = {
   SET_USER(state: State, utilisateur: Utilisateur) {
     state.utilisateur = utilisateur;
-    state.connected = true;
   },
-  LOGOUT(state: State) {
-    state.utilisateur.id = null;
-    state.utilisateur.role = null;
-    state.utilisateur.username = null;
-    state.utilisateur.password = null;
-    state.utilisateur.email = null;
-
-    state.connected = false;
+  setToken(state, token) {
+    state.token = token;
+    state.isAuthenticated = !!token;
+  },
+  clearAuthData(state) {
+    state.token = null;
+    state.isAuthenticated = false;
   }
 };
 
 const actions: ActionTree<State, any> = {
-  async login({ commit }: { commit: Commit }, user) {
-    const userLogin: Utilisateur = {
-      id: 1,
-      email: 'test@gmail.com',
-      password: null,
-      role: 'utilisateur',
-      username: 'testAccount'
-    };
+  async login({ commit }, authData) {
+    try {
+      const response = await fetch(url + 'signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: authData.email, password: authData.password })
+      });
 
-    commit("SET_USER", userLogin);
-    return true;
-  },
-  logout({ commit }: {commit: Commit}) {
-    commit('LOGOUT')
-  },
-  async signup({ commit }: {commit: Commit}, user) {
-    // envoie du signup
-    const userSignUp: Utilisateur = {
-      id: 1,
-      email: 'test2@gmail.com',
-      password: null,
-      role: 'utilisateur',
-      username: 'testAccount'
-    };
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
 
-    commit('SET_USER', userSignUp)
+      const data = await response.json();
+      commit('setToken', data.accessToken);
+      console.log(data.accessToken)
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
+  },
+  async register({ commit }, authData) {
+    try {
+      const response = await fetch(url + 'signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: authData.username, password: authData.password, email: authData.email, role: authData.role })
+      });
+
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+
+      const data = await response.json();
+      commit('setToken', data.token);
+    } catch (error) {
+      console.error('Registration error:', error);
+      throw error;
+    }
+  },
+  logout({ commit }) {
+    commit('clearAuthData');
   }
-};
+ }
+
 
 const getters: GetterTree<State, any> = {
   user(state: State): Utilisateur {
     return state.utilisateur;
   },
-  isLog(state: State): Boolean {
-    return state.connected;
+  isAuthenticated(state) {
+    return state.isAuthenticated;
   }
 };
 

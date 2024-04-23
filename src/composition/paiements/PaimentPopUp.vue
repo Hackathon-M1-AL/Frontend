@@ -25,10 +25,6 @@ const emit = defineEmits<{
 
 const choixPaiement = ref("");
 
-const props = defineProps({
-  // moyenPaiement: MoyenPaiement[]
-});
-
 const moyenPaiementTest = [
   { id: 1, nom: "Carte bancaire", image: "" },
   { id: 2, nom: "Paypal", image: "" },

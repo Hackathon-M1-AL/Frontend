@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar" v-if="!isAuthRoute">
     <div class="navbar-left">
       <!-- Logo -->
       <img class="logo" src="/src/assets/logo.png" alt="Logo" />
@@ -21,11 +21,16 @@
 <script setup>
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 const store = useStore();
+const route = useRoute();
 
 const isLog = computed(() => {
   return store.getters["utilisateurs/isLog"];
+});
+const isAuthRoute = computed(() => {
+  return route.path.includes("/auth");
 });
 </script>
 
