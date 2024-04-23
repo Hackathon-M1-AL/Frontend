@@ -21,8 +21,7 @@ import router from "../router";
 const store = useStore();
 const email = ref('');
 const password = ref('');
-const isLoginMode = ref(true);;
-const isAuthenticated = computed(() => store.getters['auth/isAuthenticated']);
+const isLoginMode = ref(true);
 
 function toggleMode() {
   isLoginMode.value = !isLoginMode.value;
