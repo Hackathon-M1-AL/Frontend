@@ -19,7 +19,7 @@
             <div style="padding: 1rem 1rem 0 2rem">
               <div style="display: flex;justify-content: space-between;padding-bottom: 2rem">
                 <div class="bold">
-                  {{element.nom}}
+                  {{element.nom}} ({{element.count}})
                 </div>
 
                 <div class="bold">

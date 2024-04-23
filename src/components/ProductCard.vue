@@ -59,7 +59,7 @@ export default {
           this.showNotification = false;
         }, 3000);
 
-        this.$store.dispatch("paniers/add", product);
+        this.$store.dispatch("paniers/add", {produit: product, count: 1});
       } else {
         this.$router.push({ name: "Auth" });
       }

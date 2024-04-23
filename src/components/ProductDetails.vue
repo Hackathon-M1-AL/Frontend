@@ -75,6 +75,8 @@ export default {
       }).format(price);
     },
     addToCart() {
+      this.$store.dispatch("paniers/add", {produit: this.product, count: this.quantity})
+
       this.showNotification = true;
       setTimeout(() => {
         this.showNotification = false;
