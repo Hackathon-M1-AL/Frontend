@@ -51,3 +51,19 @@ Oublié pas de lancé tous les autres services nécessaire pour le bon fonctionn
 - [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
 
 - Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+
+## Fonctionnalités de l'application
+
+- Inscription sur l'application
+
+- Connexion à l'application
+
+- Consulter des catalogues de produits
+
+- Consulter le détail d'un produit
+
+- Ajout d'un produit dans le panier
+
+- Gestion du panier
+
+- Consulter l'historique des commandes
