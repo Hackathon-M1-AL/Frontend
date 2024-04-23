@@ -2,7 +2,7 @@
   <div class="panier-view">
     <div class="head-panier">
       <div class="bold">
-        {{myPanier?.reduce((total, val) => total += val.count, 0)}} élément(s)
+        {{ Math.round((myPanier?.reduce((total, val) => total += val.count, 0) / 100) * 100) }} élément(s)
       </div>
 
       <div class="bold">Total: {{ total }}€</div>
@@ -65,6 +65,7 @@ function remove(product) {
 </script>
 
 <style scoped>
+
 .body-card {
   display: flex;
 }
@@ -73,6 +74,7 @@ function remove(product) {
   border: #888888 1px solid;
   border-radius: 20px;
   height: 15rem;
+  width: 50rem;
 }
 
 .panier-list {
