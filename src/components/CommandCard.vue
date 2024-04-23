@@ -12,10 +12,8 @@
   </template>
   
   <script>
-  import IconShoppingCart from "./IconShoppingCart.vue";
   
   export default {
-    components: {IconShoppingCart},
     data() {
       return {
         // Utiliser require pour inclure l'image dans le bundle de Webpack
