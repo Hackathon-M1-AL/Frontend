@@ -1,10 +1,13 @@
 <template>
   <div class="product-card" @click="handleClick">
-    <button class="add-to-cart-btn" @click.stop="addToCart(product)">
+    <button
+      class="add-to-cart-btn"
+      @click.stop="addToCart(product)"
+      @mouseover="isHovering = true"
+      @mouseleave="isHovering = false"
+    >
       <icon-shopping-cart
         :style="{ color: isHovering ? 'white' : 'black' }"
-        @mouseover="isHovering = true"
-        @mouseleave="isHovering = false"
       ></icon-shopping-cart>
     </button>
 
@@ -50,15 +53,15 @@ export default {
     },
     addToCart(product) {
       // console.log(this.$store.state.utilisateurs.connected)
-      if (this.$store.getters['utilisateurs/isLog']) {
+      if (this.$store.getters["utilisateurs/isLog"]) {
         this.showNotification = true;
         setTimeout(() => {
           this.showNotification = false;
         }, 3000);
 
-        this.$store.dispatch('paniers/add', product);
+        this.$store.dispatch("paniers/add", product);
       } else {
-          this.$router.push({name: 'Auth'});
+        this.$router.push({ name: "Auth" });
       }
     },
     handleClick() {
