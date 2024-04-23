@@ -9,7 +9,6 @@
         {{ isLoginMode ? "Pas de compte ? Inscrivez-vous" : "Vous avez déjà un compte ? Connectez-vous" }}
       </p>
 
-      <div class="error-message" v-if="!!error"> {{ error }} </div>
     </form>
   </div>
 </template>
@@ -23,7 +22,6 @@ const store = useStore();
 const email = ref('');
 const password = ref('');
 const isLoginMode = ref(true);;
-
 const isAuthenticated = computed(() => store.getters['auth/isAuthenticated']);
 
 function toggleMode() {
@@ -88,8 +86,4 @@ button:hover {
   text-decoration: underline;
 }
 
-.error-message {
-  color: #ea2d2d;
-  font-size: small;
-}
 </style>
