@@ -20,8 +20,11 @@ const mutations: MutationTree<State> = {
     state.utilisateur = utilisateur;
   },
   setToken(state, token) {
+    console.log('before',state.isAuthenticated)
     state.token = token;
     state.isAuthenticated = !!token;
+    console.log('after',state.isAuthenticated)
+
   },
   clearAuthData(state) {
     state.token = null;
