@@ -1,5 +1,5 @@
 import {Produit} from "../produits";
-import { Commit } from 'vuex';
+import {ActionTree, GetterTree, MutationTree} from 'vuex';
 import {ProduitPanier} from "./index";
 
 interface State {
@@ -10,7 +10,7 @@ const state = {
   panier: []
 };
 
-const mutations = {
+const mutations: MutationTree<State>  = {
   AJOUT_PANIER(state: State, produit: ProduitPanier) {
       state.panier.push(produit);
   },
@@ -28,13 +28,13 @@ const mutations = {
   VIDER_PANIER(state: State) {
     state.panier = [];
   },
-  MODIFY_PANIER_COUNT(payload: { produit: ProduitPanier, count: number }) {
+  MODIFY_PANIER_COUNT(state: State, payload: { produit: ProduitPanier, count: number }) {
     payload.produit.count += payload.count;
   },
 };
 
-const actions = {
-  add({ commit }: {commit: Commit}, payload: {produit: Produit, count: number}) {
+const actions: ActionTree<State, any> = {
+  add({ commit }, payload: {produit: Produit, count: number}) {
     const target = getProduitPanier(payload.produit)
 
     if (target) {
@@ -43,26 +43,26 @@ const actions = {
       commit('AJOUT_PANIER', {...payload.produit, count: payload.count});
     }
   },
-  remove({ commit }: {commit: Commit}, produit: Produit, count: number) {
-    const target = getProduitPanier(produit);
+  remove({ commit }, payload: { produit: Produit, count: number }) {
+    const target = getProduitPanier(payload.produit);
 
-    if (target  && target.count > count) {
-      commit('MODIFY_PANIER_COUNT', {produit: produit, count: count});
+    if (target  && target.count > payload.count) {
+      commit('MODIFY_PANIER_COUNT', {produit: target, count: payload.count});
     } else {
-      commit('RETIRER_PANIER', produit);
+      commit('RETIRER_PANIER', payload.produit);
     }
   },
-  clear({ commit }: {commit: Commit}) {
+  clear({ commit }) {
     commit('VIDER_PANIER');
   }
 };
 
-const getters = {
+const getters: GetterTree<State, any> = {
   panier(state: State): Produit[] {
       return state.panier;
   },
   total(state: State): number {
-      return state.panier.reduce((total, val) => total + val.prix, 0 );
+      return state.panier.reduce((total, val) => total + (val.prix * val.count), 0 );
   },
 };
 

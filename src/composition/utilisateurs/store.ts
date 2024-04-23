@@ -81,7 +81,6 @@ const actions: ActionTree<State, any> = {
   }
  }
 
-
 const getters: GetterTree<State, any> = {
   user(state: State): Utilisateur {
     return state.utilisateur;

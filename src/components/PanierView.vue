@@ -1,7 +1,9 @@
 <template>
   <div class="panier-view">
     <div class="head-panier">
-      <div class="bold">{{ myPanier.length }} élément(s)</div>
+      <div class="bold">
+        {{myPanier?.reduce((total, val) => total += val.count, 0)}} élément(s)
+      </div>
 
       <div class="bold">Total: {{ total }}€</div>
     </div>
@@ -57,8 +59,9 @@ const total = computed(() => {
 });
 
 function remove(product) {
-  store.dispatch("paniers/remove", product);
+  store.dispatch("paniers/remove", {produit: product, count: 99});
 }
+
 </script>
 
 <style scoped>
