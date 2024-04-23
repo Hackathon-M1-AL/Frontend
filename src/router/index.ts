@@ -56,16 +56,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(
-    "Route requires auth:",
-    to.matched.some((record) => record.meta.requiresAuth)
-  );
-  console.log("User is authenticated:", store.state.isAuthenticated);
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&
     !store.state.isAuthenticated
   ) {
-    console.log("Redirecting to login...");
     next({ name: "Auth" });
   } else {
     next();
