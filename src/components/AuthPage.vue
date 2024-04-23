@@ -2,59 +2,45 @@
   <div class="auth-container">
     <form @submit.prevent="handleSubmit">
       <h2>{{ isLoginMode ? "Connexion" : "Inscription" }}</h2>
-
-      <!-- Inputs pour email et mot de passe -->
-      <input type="email" v-model="email" placeholder="Email" required />
-      <input
-        type="password"
-        v-model="password"
-        placeholder="Mot de passe"
-        required
-      />
-
-      <!-- Bouton pour soumettre le formulaire -->
-      <button type="submit">
-        {{ isLoginMode ? "Connexion" : "S'inscrire" }}
-      </button>
-
-      <!-- Lien pour basculer entre Inscription et Connexion -->
+      <input type="email" v-model="email" placeholder="Email" required/>
+      <input type="password" v-model="password" placeholder="Mot de passe" required/>
+      <button type="submit">{{ isLoginMode ? "Connexion" : "S'inscrire" }}</button>
       <p class="switch-mode" @click="toggleMode">
-        {{
-          isLoginMode
-            ? "Pas de compte ? Inscrivez-vous"
-            : "Vous avez déjà un compte ? Connectez-vous"
-        }}
+        {{ isLoginMode ? "Pas de compte ? Inscrivez-vous" : "Vous avez déjà un compte ? Connectez-vous" }}
       </p>
     </form>
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script lang="ts" setup>
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const isLoginMode = ref(true);
+const store = useStore();
+const email = ref('');
+const password = ref('');
+const isLoginMode = ref(true);;
 
-    function toggleMode() {
-      isLoginMode.value = !isLoginMode.value;
+const isAuthenticated = computed(() => store.getters['auth/isAuthenticated']);
+
+function toggleMode() {
+  isLoginMode.value = !isLoginMode.value;
+}
+
+async function handleSubmit() {
+  try {
+    const authData = {email: email.value, password: password.value};
+    if (isLoginMode.value) {
+      await store.dispatch('utilisateurs/login', authData);
+    } else {
+      await store.dispatch('utilisateurs/register', authData);
     }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
-    function handleSubmit() {
-      if (isLoginMode.value) {
-        // Logique de connexion
-        console.log("Connexion avec", email.value, password.value);
-      } else {
-        // Logique d'inscription
-        console.log("Inscription avec", email.value, password.value);
-      }
-    }
 
-    return { email, password, isLoginMode, toggleMode, handleSubmit };
-  },
-};
 </script>
 
 <style scoped>
