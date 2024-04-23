@@ -9,6 +9,7 @@
       <li><router-link :to="{name: 'Catalogue'}">Accueil</router-link></li>
       <li><router-link :to="{name: isLog ? 'Panier' : 'Auth'}">Panier</router-link></li>
       <li><router-link :to="{name: isLog ? 'Commande' : 'Auth'}">Commande</router-link></li>
+      <li><router-link to="/create">Config</router-link></li>
     </ul>
 
     <div class="navbar-right">
@@ -18,15 +19,14 @@
 </template>
 
 <script setup>
-import {useStore} from "vuex";
-import {computed} from 'vue';
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 const store = useStore();
 
 const isLog = computed(() => {
-  return store.getters["utilisateurs/isLog"]
+  return store.getters["utilisateurs/isLog"];
 });
-
 </script>
 
 <style scoped>

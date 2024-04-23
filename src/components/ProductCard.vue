@@ -1,7 +1,11 @@
 <template>
   <div class="product-card" @click="handleClick">
     <button class="add-to-cart-btn" @click.stop="addToCart(product)">
-      <icon-shopping-cart></icon-shopping-cart>
+      <icon-shopping-cart
+        :style="{ color: isHovering ? 'white' : 'black' }"
+        @mouseover="isHovering = true"
+        @mouseleave="isHovering = false"
+      ></icon-shopping-cart>
     </button>
 
     <img :src="product.image" :alt="product.name" class="product-image" />
@@ -11,6 +15,12 @@
       <div class="product-price">{{ formatPrice(product.prix) }}</div>
       <div class="product-category">{{ product.catalogue }}</div>
     </div>
+    <transition name="fade">
+      <div class="notification" v-if="showNotification">
+        L'article a été ajouté au panier.
+        <div class="progress-bar"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -18,11 +28,11 @@
 import IconShoppingCart from "./IconShoppingCart.vue";
 
 export default {
-  components: {IconShoppingCart},
+  components: { IconShoppingCart },
   data() {
     return {
-      // Utiliser require pour inclure l'image dans le bundle de Webpack
-      //addToCartIconUrl: require("@/assets/addToBasket.svg"),
+      isHovering: false,
+      showNotification: false,
     };
   },
   props: {
@@ -33,7 +43,6 @@ export default {
   },
   methods: {
     formatPrice(price) {
-      // Formate le prix en monnaie locale
       return new Intl.NumberFormat("fr-FR", {
         style: "currency",
         currency: "EUR",
@@ -42,6 +51,11 @@ export default {
     addToCart(product) {
       // console.log(this.$store.state.utilisateurs.connected)
       if (this.$store.getters['utilisateurs/isLog']) {
+        this.showNotification = true;
+        setTimeout(() => {
+          this.showNotification = false;
+        }, 3000);
+
         this.$store.dispatch('paniers/add', product);
       } else {
           this.$router.push({name: 'Auth'});
@@ -107,10 +121,10 @@ export default {
 
 .product-category {
   font-size: 0.9em;
-  background-color: #e0e0e0; /* Couleur de fond grise */
+  background-color: #e0e0e0;
   color: #333;
   padding: 3px 10px;
-  border-radius: 16px; /* Coins arrondis pour l'effet de pastille */
+  border-radius: 16px;
   display: inline-block;
   margin-bottom: 4px;
 }
@@ -135,11 +149,49 @@ export default {
   height: 1.5rem;
 }
 .add-to-cart-btn:hover {
-  background-color: #367c39; /* Vert foncé */
+  background-color: #367c39;
 }
 
 .add-to-cart-btn img {
-  width: 20px; /* Taille de l'icône à ajuster selon tes besoins */
+  width: 20px;
   height: 20px;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: white;
+  width: 100%;
+  border-radius: 4px;
+  animation: shrink 3s linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
