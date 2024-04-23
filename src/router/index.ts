@@ -3,7 +3,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import AuthPage from "../components/AuthPage.vue";
 import ProductCard from "../components/ProductCard.vue";
 import CatalogueView from "../components/CatalogueView.vue";
-import CatalogueCreator from "../components/CatalogueCreator.vue";
 import PaimentPopUp from "../composition/paiements/PaimentPopUp.vue";
 import CommandView from "../components/CommandView.vue";
 import PanierView from "../components/PanierView.vue";
