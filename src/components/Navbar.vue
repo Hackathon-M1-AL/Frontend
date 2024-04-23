@@ -9,24 +9,26 @@
       <li><router-link to="/catalogue">Accueil</router-link></li>
       <li><router-link to="/">Panier</router-link></li>
       <li><router-link to="/commande">Commande</router-link></li>
+      <li><router-link to="/create">Config</router-link></li>
     </ul>
 
     <div class="navbar-right">
-      <router-link class="profile" to="/auth">{{ isLog ? 'Déconnecter' : 'Se connecter' }}</router-link>
+      <router-link class="profile" to="/auth">{{
+        isLog ? "Déconnecter" : "Se connecter"
+      }}</router-link>
     </div>
   </nav>
 </template>
 
 <script setup>
-import {useStore} from "vuex";
-import {computed} from 'vue';
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 const store = useStore();
 
 const isLog = computed(() => {
-  return store.getters["utilisateurs/isLog"]
+  return store.getters["utilisateurs/isLog"];
 });
-
 </script>
 
 <style scoped>

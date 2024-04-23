@@ -6,8 +6,10 @@
           <img :src="product.image" :alt="product.nom" class="product-image" />
         </div>
         <div class="modal-right">
-          <span class="close" @click="close">&times;</span>
-          <h2 class="product-title">{{ product.nom }}</h2>
+          <div class="title-bar">
+            <h2 class="product-title">{{ product.nom }}</h2>
+            <span class="close" @click="close">&times;</span>
+          </div>
           <p class="product-description">{{ product.description }}</p>
           <p class="product-price">{{ formatPrice(product.prix) }}</p>
           <div class="quantity-section">
@@ -121,17 +123,30 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
-.close {
-  align-self: flex-end;
-  cursor: pointer;
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .product-title {
   font-size: 26px;
   font-weight: bold;
   margin: 10px 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.close {
+  font-size: 36px;
+  padding: 10px;
+  cursor: pointer;
+  line-height: 1;
+  display: block;
 }
 
 .product-description {
