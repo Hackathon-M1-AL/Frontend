@@ -87,6 +87,7 @@ export default {
   position: relative;
   display: inline-block;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 select {
