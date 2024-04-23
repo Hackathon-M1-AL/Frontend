@@ -53,7 +53,7 @@ export default {
     },
     addToCart(product) {
       // console.log(this.$store.state.utilisateurs.connected)
-      if (this.$store.getters["utilisateurs/isLog"]) {
+      if (this.$store.getters["utilisateurs/isAuthenticated"]) {
         this.showNotification = true;
         setTimeout(() => {
           this.showNotification = false;

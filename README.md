@@ -42,7 +42,7 @@ Vous pouvez également lancer l'application dans un conteneur Docker en utilisan
     ```bash
     docker-compose up --build
     ```
-Cela va construire l'image Docker et démarrer le conteneur, rendant l'application accessible à l'adresse `http://localhost:3000` dans votre navigateur.
+Cela va construire l'image Docker et démarrer le conteneur, rendant l'application accessible à l'adresse `http://localhost:8000` dans votre navigateur.
 
 Oublié pas de lancé tous les autres services nécessaire pour le bon fonctionnement de l'application.
 

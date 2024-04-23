@@ -27,7 +27,7 @@ const store = useStore();
 const route = useRoute();
 
 const isLog = computed(() => {
-  return store.getters["utilisateurs/isLog"];
+  return store.getters["utilisateurs/isAuthenticated"];
 });
 const isAuthRoute = computed(() => {
   return route.path.includes("/auth");
