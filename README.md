@@ -1,6 +1,51 @@
-# Vue 3 + TypeScript + Vite
+# Mon Application Vue3 avec Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Cette application est construite avec Vue3 et utilise Vite comme outil de développement rapide. Avec Docker Compose, vous pouvez facilement lancer l'application dans un environnement Dockerisé.
+
+## Prérequis
+
+Assurez-vous d'avoir installé les outils suivants sur votre machine avant de commencer :
+- [Node.js](https://nodejs.org/) (version recommandée : 14.x)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+## Installation
+
+1. Clonez ce dépôt sur votre machine locale :
+    ```bash
+    git clone <url-du-dépôt> mon-application-vue3
+    ```
+
+2. Accédez au répertoire de l'application :
+    ```bash
+    cd mon-application-vue3
+    ```
+
+3. Installez les dépendances Node.js :
+    ```bash
+    npm install
+    ```
+
+## Lancement de l'application en mode développement
+
+Pour lancer l'application en mode développement avec Vite, exécutez la commande suivante :
+```bash
+npm run dev
+```
+Cela démarrera un serveur de développement local et ouvrira automatiquement votre navigateur par défaut avec l'application chargée.
+
+## Docker Compose
+
+Vous pouvez également lancer l'application dans un conteneur Docker en utilisant Docker Compose.
+1. Assurez-vous que Docker est en cours d'exécution sur votre machine.
+2. Utilisez Docker Compose pour construire et démarrer les conteneurs :
+    ```bash
+    docker-compose up --build
+    ```
+Cela va construire l'image Docker et démarrer le conteneur, rendant l'application accessible à l'adresse `http://localhost:3000` dans votre navigateur.
+
+
+
 
 ## Recommended Setup
 
