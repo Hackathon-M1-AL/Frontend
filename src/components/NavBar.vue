@@ -6,14 +6,24 @@
     </div>
     <ul class="navbar-center">
       <!-- Liens des pages -->
-      <li><router-link :to="{name: 'Catalogue'}">Accueil</router-link></li>
-      <li><router-link :to="{name: isLog ? 'Panier' : 'Auth'}">Panier</router-link></li>
-      <li><router-link :to="{name: isLog ? 'Commande' : 'Auth'}">Commande</router-link></li>
+      <li><router-link :to="{ name: 'Catalogue' }">Accueil</router-link></li>
+      <li>
+        <router-link :to="{ name: isLog ? 'Panier' : 'Auth' }"
+          >Panier</router-link
+        >
+      </li>
+      <li>
+        <router-link :to="{ name: isLog ? 'Commande' : 'Auth' }"
+          >Commande</router-link
+        >
+      </li>
       <li><router-link to="/create">Config</router-link></li>
     </ul>
 
     <div class="navbar-right">
-      <router-link class="profile" to="/auth">{{ isLog ? 'Déconnecter' : 'Se connecter' }}</router-link>
+      <router-link class="profile" to="/auth">{{
+        isLog ? "Déconnecter" : "Se connecter"
+      }}</router-link>
     </div>
   </nav>
 </template>
@@ -94,5 +104,9 @@ const isAuthRoute = computed(() => {
 
 .profile:hover {
   color: #000000;
+}
+
+.navbar-left {
+  transform: translateY(50%);
 }
 </style>
