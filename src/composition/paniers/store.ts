@@ -28,7 +28,7 @@ const mutations = {
   VIDER_PANIER(state: State) {
     state.panier = [];
   },
-  MODIFY_PANIER_COUNT(state: State, payload: { produit: ProduitPanier, count: number }) {
+  MODIFY_PANIER_COUNT(payload: { produit: ProduitPanier, count: number }) {
     payload.produit.count += payload.count;
   },
 };
@@ -73,7 +73,9 @@ function getProduitPanier(produit: Produit): ProduitPanier | undefined {
 
 export default {
   namespaced: true,
-  state,
+  state: {
+    panier: []
+  },
   mutations,
   actions,
   getters
