@@ -6,6 +6,7 @@ import CatalogueView from "../components/CatalogueView.vue";
 import CatalogueCreator from "../components/CatalogueCreator.vue";
 import PaimentPopUp from "../composition/paiements/PaimentPopUp.vue";
 import CommandView from "../components/CommandView.vue";
+import PanierView from "../components/PanierView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/commande",
     name: "Commande",
     component: CommandView,
+  },
+  {
+    path: "/panier",
+    name: "Panier",
+    component: PanierView,
   },
   {
     path: "/:pathMatch(.*)*", // Catch-all route

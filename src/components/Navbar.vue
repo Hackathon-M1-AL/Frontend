@@ -6,9 +6,9 @@
     </div>
     <ul class="navbar-center">
       <!-- Liens des pages -->
-      <li><router-link to="/catalogue">Accueil</router-link></li>
-      <li><router-link to="/">Panier</router-link></li>
-      <li><router-link to="/commande">Commande</router-link></li>
+      <li><router-link :to="{name: 'Catalogue'}">Accueil</router-link></li>
+      <li><router-link :to="{name: isLog ? 'Panier' : 'Auth'}">Panier</router-link></li>
+      <li><router-link :to="{name: isLog ? 'Commande' : 'Auth'}">Commande</router-link></li>
     </ul>
 
     <div class="navbar-right">
@@ -31,13 +31,14 @@ const isLog = computed(() => {
 
 <style scoped>
 .navbar {
-  border-radius: 15px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding: 10px 20px;
   background-color: hsl(0, 0%, 100%);
   color: rgb(0, 0, 0);
+
+  border-bottom: #b2b2b2 solid 1px;
 }
 
 .navbar-left {

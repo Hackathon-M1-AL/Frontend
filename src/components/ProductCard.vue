@@ -40,8 +40,12 @@ export default {
       }).format(price);
     },
     addToCart(product) {
-      // Logique pour ajouter le produit au panier
-      console.log("Ajouté au panier:", product);
+      // console.log(this.$store.state.utilisateurs.connected)
+      if (this.$store.getters['utilisateurs/isLog']) {
+        this.$store.dispatch('paniers/add', product);
+      } else {
+          this.$router.push({name: 'Auth'});
+      }
     },
     handleClick() {
       this.$emit("view-details", this.product);
