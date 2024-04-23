@@ -1,7 +1,11 @@
 <template>
   <div class="product-card" @click="handleClick">
     <button class="add-to-cart-btn" @click.stop="addToCart(product)">
-      <icon-shopping-cart></icon-shopping-cart>
+      <icon-shopping-cart
+        :style="{ color: isHovering ? 'white' : 'black' }"
+        @mouseover="isHovering = true"
+        @mouseleave="isHovering = false"
+      ></icon-shopping-cart>
     </button>
 
     <img :src="product.image" :alt="product.name" class="product-image" />
@@ -18,11 +22,10 @@
 import IconShoppingCart from "./IconShoppingCart.vue";
 
 export default {
-  components: {IconShoppingCart},
+  components: { IconShoppingCart },
   data() {
     return {
-      // Utiliser require pour inclure l'image dans le bundle de Webpack
-      //addToCartIconUrl: require("@/assets/addToBasket.svg"),
+      isHovering: false,
     };
   },
   props: {
@@ -33,14 +36,12 @@ export default {
   },
   methods: {
     formatPrice(price) {
-      // Formate le prix en monnaie locale
       return new Intl.NumberFormat("fr-FR", {
         style: "currency",
         currency: "EUR",
       }).format(price);
     },
     addToCart(product) {
-      // Logique pour ajouter le produit au panier
       console.log("Ajouté au panier:", product);
     },
     handleClick() {
@@ -103,10 +104,10 @@ export default {
 
 .product-category {
   font-size: 0.9em;
-  background-color: #e0e0e0; /* Couleur de fond grise */
+  background-color: #e0e0e0;
   color: #333;
   padding: 3px 10px;
-  border-radius: 16px; /* Coins arrondis pour l'effet de pastille */
+  border-radius: 16px;
   display: inline-block;
   margin-bottom: 4px;
 }
@@ -131,11 +132,11 @@ export default {
   height: 1.5rem;
 }
 .add-to-cart-btn:hover {
-  background-color: #367c39; /* Vert foncé */
+  background-color: #367c39;
 }
 
 .add-to-cart-btn img {
-  width: 20px; /* Taille de l'icône à ajuster selon tes besoins */
+  width: 20px;
   height: 20px;
 }
 </style>

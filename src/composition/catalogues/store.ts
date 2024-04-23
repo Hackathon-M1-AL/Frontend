@@ -1,6 +1,6 @@
 // store.ts
 import { ActionTree, MutationTree, StoreOptions } from "vuex";
-import { Catalogue } from "./index"; // Assurez-vous que le chemin est correct
+import { Catalogue } from "./index";
 import axios from "axios";
 
 interface State {
@@ -23,14 +23,12 @@ const actions: ActionTree<State, State> = {
         throw error;
       });
   },
-  // d'autres actions ...
 };
 
 const mutations: MutationTree<State> = {
   ADD_CATALOGUE(state, catalogue: Catalogue) {
     state.catalogues.push(catalogue);
   },
-  // d'autres mutations ...
 };
 
 const store: StoreOptions<State> = {
