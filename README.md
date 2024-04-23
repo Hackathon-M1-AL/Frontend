@@ -18,7 +18,7 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine avant de co
 
 2. Accédez au répertoire de l'application :
     ```bash
-    cd mon-application-vue3
+    cd Frontend
     ```
 
 3. Installez les dépendances Node.js :
