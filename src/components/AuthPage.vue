@@ -8,6 +8,8 @@
       <p class="switch-mode" @click="toggleMode">
         {{ isLoginMode ? "Pas de compte ? Inscrivez-vous" : "Vous avez déjà un compte ? Connectez-vous" }}
       </p>
+
+      <div class="error-message" v-if="!!error"> {{ error }} </div>
     </form>
   </div>
 </template>
@@ -84,5 +86,10 @@ button:hover {
 
 .switch-mode:hover {
   text-decoration: underline;
+}
+
+.error-message {
+  color: #ea2d2d;
+  font-size: small;
 }
 </style>

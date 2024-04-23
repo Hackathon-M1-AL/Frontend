@@ -2,40 +2,41 @@
   <div class="paiement-popup" @update:model-value="$emit('close')">
     <h1>Paiement</h1>
     <div class="cards">
-      <div v-for="element in moyenPaiementTest" class="card" @click="choixPaiement = element.nom">
-        <img :src="element.image" alt="logo" class="logo"/>
+      <div
+        v-for="(element, index) in moyenPaiementTest"
+        :key="index"
+        class="card"
+        @click="choixPaiement = element.nom"
+      >
+        <img :src="element.image" alt="logo" class="logo" />
         <p>{{ element.nom }}</p>
       </div>
     </div>
     <span class="line"></span>
     <span>vous avez choisie {{ choixPaiement }}</span>
   </div>
-
 </template>
 <script setup lang="ts">
-
-import {ref} from "vue";
+import { ref } from "vue";
 
 const emit = defineEmits<{
-  (e: 'close'): void;
+  (e: "close"): void;
 }>();
 
-const choixPaiement = ref('')
-
+const choixPaiement = ref("");
 
 const props = defineProps({
   // moyenPaiement: MoyenPaiement[]
-})
+});
 
 const moyenPaiementTest = [
-  {id: 1, nom: "Carte bancaire", image: ""},
-  {id: 2, nom: "Paypal", image: ""},
-  {id: 3, nom: "Virement bancaire", image: ""},
-  {id: 4, nom: "Chèque", image: ""},
-  {id: 5, nom: "Espèce", image: ""},
-  {id: 6, nom: "Autre", image: ""}
-]
-
+  { id: 1, nom: "Carte bancaire", image: "" },
+  { id: 2, nom: "Paypal", image: "" },
+  { id: 3, nom: "Virement bancaire", image: "" },
+  { id: 4, nom: "Chèque", image: "" },
+  { id: 5, nom: "Espèce", image: "" },
+  { id: 6, nom: "Autre", image: "" },
+];
 </script>
 <style scoped>
 .paiement-popup {

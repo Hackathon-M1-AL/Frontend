@@ -6,8 +6,10 @@
           <img :src="product.image" :alt="product.nom" class="product-image" />
         </div>
         <div class="modal-right">
-          <span class="close" @click="close">&times;</span>
-          <h2 class="product-title">{{ product.nom }}</h2>
+          <div class="title-bar">
+            <h2 class="product-title">{{ product.nom }}</h2>
+            <span class="close" @click="close">&times;</span>
+          </div>
           <p class="product-description">{{ product.description }}</p>
           <p class="product-price">{{ formatPrice(product.prix) }}</p>
           <div class="quantity-section">
@@ -27,13 +29,19 @@
           <div class="flex-container">
             <div class="button-section">
               <button class="buy-now-btn">Acheter maintenant</button>
-              <button class="add-to-cart-btn">
+              <button class="add-to-cart-btn" @click="addToCart">
                 <i class="fas fa-shopping-cart"></i> Ajouter au panier
               </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </transition>
+  <transition name="fade">
+    <div class="notification" v-if="showNotification">
+      L'article a été ajouté au panier.
+      <div class="progress-bar"></div>
     </div>
   </transition>
 </template>
@@ -53,6 +61,7 @@ export default {
   data() {
     return {
       quantity: 1,
+      showNotification: false,
     };
   },
   methods: {
@@ -64,6 +73,12 @@ export default {
         style: "currency",
         currency: "EUR",
       }).format(price);
+    },
+    addToCart() {
+      this.showNotification = true;
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 3000);
     },
     increment() {
       this.quantity += 1;
@@ -121,17 +136,30 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
-.close {
-  align-self: flex-end;
-  cursor: pointer;
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .product-title {
   font-size: 26px;
   font-weight: bold;
   margin: 10px 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.close {
+  font-size: 36px;
+  padding: 10px;
+  cursor: pointer;
+  line-height: 1;
+  display: block;
 }
 
 .product-description {
@@ -216,6 +244,44 @@ export default {
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: white;
+  width: 100%;
+  border-radius: 4px;
+  animation: shrink 3s linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter,

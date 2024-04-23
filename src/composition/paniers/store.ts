@@ -6,7 +6,7 @@ interface State {
 }
 
 const state = {
-  panier: null
+  panier: []
 };
 
 const mutations = {
@@ -18,7 +18,7 @@ const mutations = {
 
     state.panier = state.panier.filter((item: Produit) => {
       if (produit.id === item.id) {
-        return removeCount++ === 0
+        return removeCount++ !== 0
       } else {
         return true;
       }
@@ -31,6 +31,7 @@ const mutations = {
 
 const actions = {
   add({ commit }: {commit: Commit}, produit: Produit) {
+    console.log(produit);
     commit('AJOUT_PANIER', produit);
   },
   remove({ commit }: {commit: Commit}, produit: Produit) {
@@ -44,6 +45,9 @@ const actions = {
 const getters = {
   panier(state: State): Produit[] {
       return state.panier;
+  },
+  total(state: State): number {
+      return state.panier.reduce((total, val) => total + val.prix, 0 );
   }
 };
 
