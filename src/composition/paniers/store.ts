@@ -29,6 +29,7 @@ const mutations: MutationTree<State>  = {
     state.panier = [];
   },
   MODIFY_PANIER_COUNT(state: State, payload: { produit: ProduitPanier, count: number }) {
+    state.panier;
     payload.produit.count += payload.count;
   },
 };
