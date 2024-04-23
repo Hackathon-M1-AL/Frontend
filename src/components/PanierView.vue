@@ -11,7 +11,7 @@
     </div>
 
     <div class="panier-list">
-      <div v-for="element in myPanier">
+      <div v-for="(element, i) in myPanier" :key="i">
         <div class="card-panier">
           <div class="body-card" style="position: relative">
             <img :src="element.image" alt="les alt ne servent à rien dans ce projet" class="product-image">
@@ -70,21 +70,19 @@ function remove(product) {
 .card-panier {
   border: #888888 1px solid;
   border-radius: 20px;
-}
-
-.panier-view {
-
+  width: 50rem;
+  height: 15rem;
 }
 
 .panier-list {
   display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .product-image {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   border-radius:20px 0 0 20px;
   object-fit: cover;
 }

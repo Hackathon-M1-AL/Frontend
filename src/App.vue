@@ -1,6 +1,6 @@
 <template>
   <div class="global-app">
-    <Navbar />
+    <NavBar />
 
     <div class="view-app">
       <router-view></router-view>
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from "./components/Navbar.vue";
+import NavBar from "./components/NavBar.vue";
 </script>
 
 <style scoped>

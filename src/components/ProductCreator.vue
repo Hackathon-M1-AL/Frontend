@@ -1,14 +1,15 @@
 <template>
   <div>
-    <input type="text" v-model="product.name" placeholder="Nom du produit" />
+    <input type="text" v-model="localProduct.name" placeholder="Nom du produit" />
+
     <textarea
-      v-model="product.description"
+      v-model="localProduct.description"
       placeholder="Description du produit"
     ></textarea>
-    <input type="number" v-model.number="product.price" placeholder="Prix" />
+    <input type="number" v-model.number="localProduct.price" placeholder="Prix" />
     <input
       type="number"
-      v-model.number="product.quantityAvailable"
+      v-model.number="localProduct.quantityAvailable"
       placeholder="Quantité disponible"
     />
     <button class="update-product" @click="updateProduct">
@@ -22,11 +23,25 @@
 
 <script>
 export default {
+  emits: ['product-update'],
   props: {
     product: {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      localProduct: {
+        quantityAvailable: 0,
+        name: "",
+        description: "",
+        price: 0
+      }
+    }
+  },
+  mounted() {
+    this.localProduct = this.product;
   },
   methods: {
     updateProduct() {
@@ -35,7 +50,7 @@ export default {
     removeProduct() {
       this.$emit("remove-product");
     },
-  },
+  }
 };
 </script>
 
